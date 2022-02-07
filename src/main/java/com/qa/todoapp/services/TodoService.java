@@ -1,6 +1,9 @@
 package com.qa.todoapp.services;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +27,22 @@ public class TodoService {
 		return mapper.map(todo, TodoDTO.class);
 	}
 	
-//	public List<TodoDTO> getCurrentTodos(){
-//		
-//	}
+	/***
+	 * Private method for mapping List of Todos to DTOs
+	 * @param todos
+	 * @return
+	 */
+	private List<TodoDTO> mapToDTOList(List<Todo> todos){
+		List<TodoDTO> dtos = new ArrayList<>();
+		todos.forEach(t -> {
+			dtos.add(mapToDTO(t));
+		});
+		return dtos;
+	}
+	
+	public List<TodoDTO> getCurrentTodos(Long user_id){
+		List<Todo> todos = repo.getCurrentTodos(user_id);
+		return mapToDTOList(todos);
+	}
 
 }
