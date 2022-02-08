@@ -32,12 +32,12 @@ public class TodoService {
 	 * @param todos
 	 * @return
 	 */
-	private List<TodoDTO> mapToDTOList(List<Todo> todos){
+	public List<TodoDTO> mapToDTOList(List<Todo> todos){
 		List<TodoDTO> dtos = new ArrayList<>();
 		todos.forEach(t -> {
 			dtos.add(mapToDTO(t));
 		});
-		return dtos;
+		return null;
 	}
 	
 	public List<TodoDTO> getCurrentTodos(Long user_id){

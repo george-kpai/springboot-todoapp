@@ -26,15 +26,15 @@ public class Todo {
 	
 	public Todo() {}
 	
-	public Todo(String description, LocalDate dateAdded, 
-			LocalDate dateDue, boolean complete, User user) {
-		super();
+	public Todo(long id, String description, LocalDate dateAdded, 
+			LocalDate dateDue, boolean complete) {
+		this.id = id;
 		this.description = description;
 		this.dateAdded = dateAdded;
 		this.dateDue = dateDue;
 		this.complete = complete;
 		//TODO: Do I need to add user as a constructor parameter?
-		this.user = user;
+//		this.user = user;
 	}
 
 	public long getId() {
@@ -77,13 +77,13 @@ public class Todo {
 		this.complete = complete;
 	}
 	
-	//TODO: Do I need to specify getters and setters for Joined Columns?
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	//TODO: Do I need to specify getters and setters for Joined Columns?
+//	public User getUser() {
+//		return user;
+//	}
+//	
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 }
