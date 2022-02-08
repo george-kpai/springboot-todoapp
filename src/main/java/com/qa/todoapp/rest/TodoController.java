@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.todoapp.dtos.TodoDTO;
+import com.qa.todoapp.persistence.model.Todo;
 import com.qa.todoapp.services.TodoService;
 
 @RestController
@@ -25,6 +26,8 @@ public class TodoController {
 	
 	@GetMapping("/current/{id}")
 	public ResponseEntity<List<TodoDTO>> getCurrentTodos(@PathVariable Long id){
-		return ResponseEntity.ok(this.service.getCurrentTodos(id));
+		List<Todo> todos = this.service.getCurrentTodos(id);
+		List<TodoDTO> dtos = this.service.mapToDTOList(todos);
+		return ResponseEntity.ok(dtos);
 	}
 }

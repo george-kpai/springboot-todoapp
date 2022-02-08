@@ -12,6 +12,6 @@ import com.qa.todoapp.persistence.model.Todo;
 public interface TodoRepo extends JpaRepository<Todo, Long> {
 	@Query("SELECT t FROM User u INNER JOIN u.todos t "
 			+ "WHERE u.id = ?1 AND t.complete = TRUE")
-	List<Todo> getCurrentTodos(long user_id);
+	List<Todo> getCurrentTodos(Long user_id);
 	//TODO: Research "WHERE t.complete = TRUE" i.e hard coded
 }

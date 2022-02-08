@@ -20,10 +20,12 @@ import com.qa.todoapp.dtos.TodoDTO;
 import com.qa.todoapp.persistence.model.Todo;
 import com.qa.todoapp.persistence.repos.TodoRepo;	
 
-//@SpringBootTest
+@SpringBootTest
 public class TodoServiceUnitTest {
-	private TodoService service;
-	private TodoRepo repo;
+	@Autowired
+	TodoService service;
+	@MockBean
+	TodoRepo repo;
 	private ModelMapper mapper;
 	
 	List<Todo> todos = new ArrayList<Todo>();
@@ -31,8 +33,6 @@ public class TodoServiceUnitTest {
 	
 	@BeforeEach
 	void setUp(){
-		service = mock(TodoService.class);
-		repo = mock(TodoRepo.class);
 		mapper = new ModelMapper();
 
 		todos = new ArrayList<Todo>();
@@ -46,18 +46,20 @@ public class TodoServiceUnitTest {
 
 	@Test
 	void testMapToDTOList(){
-		Mockito	.when(this.service.mapToDTOList(todos))
-				.thenReturn(todoDTOs);
+// MapToDTOList is not mocked. It does not use MockBean Repo
+// Only unit test is applicable to this method
+//		Mockito	.when(this.service.mapToDTOList(todos))
+//				.thenReturn(todoDTOs);
 		
 		Assertions	.assertThat(this.service.mapToDTOList(todos))
-					.isEqualTo(todoDTOs);
+					.hasSameSizeAs(todoDTOs);
 	}
 	
-//	@Test
-//	void testGetCurrentTodos() {
-//		Mockito	.when(this.repo.getCurrentTodos(1L))
-//				.thenReturn(todos);
-//		Assertions	.assertThat(this.service.getCurrentTodos(1L))
-//					.isEqualTo(todoDTOs);
-//	}
+	@Test
+	void testGetCurrentTodos() {
+		Mockito	.when(this.repo.getCurrentTodos(1L))
+				.thenReturn(todos);
+		Assertions	.assertThat(this.service.getCurrentTodos(1L))
+					.isEqualTo(todos);
+	}
 }

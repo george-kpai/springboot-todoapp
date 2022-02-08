@@ -37,12 +37,12 @@ public class TodoService {
 		todos.forEach(t -> {
 			dtos.add(mapToDTO(t));
 		});
-		return null;
+		return dtos;
 	}
 	
-	public List<TodoDTO> getCurrentTodos(Long user_id){
+	public List<Todo> getCurrentTodos(Long user_id){
 		List<Todo> todos = repo.getCurrentTodos(user_id);
-		return mapToDTOList(todos);
+		return todos;
 	}
 
 }
