@@ -14,21 +14,20 @@ import javax.persistence.OneToMany;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
 	private String name;
 	@Column(nullable = false)
 	private String password;
-	@OneToMany(mappedBy = "User", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Todo> todos;
 	
 	
 	public User() {}
 	
 	public User(String email, String name, String password) {
-		super();
 		this.email = email;
 		this.name = name;
 		this.password = password;
@@ -38,7 +37,7 @@ public class User {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
