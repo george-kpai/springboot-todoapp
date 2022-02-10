@@ -59,5 +59,12 @@ public class TodoService {
 		existing.setDescription(todo.getDescription());
 		return repo.save(existing);
 	}
+	
+	public Todo markComplete(Long id, boolean complete) {
+		Optional<Todo> optional = repo.findById(id);
+		Todo existing = optional.get();
+		existing.setComplete(complete);
+		return repo.save(existing);
+	}
 
 }

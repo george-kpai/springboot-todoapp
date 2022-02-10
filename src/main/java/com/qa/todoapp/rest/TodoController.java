@@ -45,4 +45,12 @@ public class TodoController {
 		Todo updated = this.service.updateTodo(todo);
 		return ResponseEntity.ok(this.service.mapToDTO(updated));
 	}
+	
+	@PutMapping("/mark-complete")
+	public ResponseEntity<TodoDTO> markComplete(
+			@RequestParam(name = "id") Long id, 
+			@RequestParam(name = "complete") boolean complete){
+		Todo completed = this.service.markComplete(id, complete);
+		return ResponseEntity.ok(this.service.mapToDTO(completed));
+	}
 }
