@@ -66,5 +66,11 @@ public class TodoService {
 		existing.setComplete(complete);
 		return repo.save(existing);
 	}
+	
+	public boolean deleteTodo(Long id) {
+		repo.deleteById(id);
+		boolean exists = repo.existsById(id);
+		return !exists;
+	}
 
 }
