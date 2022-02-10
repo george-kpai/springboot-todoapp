@@ -44,5 +44,9 @@ public class TodoService {
 		List<Todo> todos = repo.getCurrentTodos(user_id);
 		return todos;
 	}
+	
+	public Todo createTodo(Todo todo) {
+		return repo.save(todo);
+	}
 
 }
