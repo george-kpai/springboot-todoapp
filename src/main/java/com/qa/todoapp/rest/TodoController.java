@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,10 +26,16 @@ public class TodoController {
 		this.service = service;
 	}
 	
-	@GetMapping("/current/{id}")
-	public ResponseEntity<List<TodoDTO>> getCurrentTodos(@PathVariable Long id){
+	@GetMapping("/current")
+	public ResponseEntity<List<TodoDTO>> getCurrentTodos(@RequestParam(name = "id") Long id){
 		List<Todo> todos = this.service.getCurrentTodos(id);
 		List<TodoDTO> dtos = this.service.mapToDTOList(todos);
 		return ResponseEntity.ok(dtos);
+	}
+	
+	@PostMapping("/new")
+	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo){
+		Todo dbTodo = this.service.createTodo(todo);
+		return ResponseEntity.ok(this.service.mapToDTO(dbTodo));
 	}
 }
