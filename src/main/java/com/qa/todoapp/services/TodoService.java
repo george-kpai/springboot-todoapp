@@ -3,6 +3,7 @@ package com.qa.todoapp.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,16 @@ public class TodoService {
 	
 	public Todo createTodo(Todo todo) {
 		return repo.save(todo);
+	}
+	
+	public Todo updateTodo(Todo todo) {
+		Optional<Todo> optional = repo.findById(todo.getTodo_id());
+		Todo existing = optional.get();
+		existing.setComplete(todo.isComplete());
+		existing.setDateAdded(todo.getDateAdded());
+		existing.setDateDue(todo.getDateDue());
+		existing.setDescription(todo.getDescription());
+		return repo.save(existing);
 	}
 
 }
