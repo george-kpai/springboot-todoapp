@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,5 +38,11 @@ public class TodoController {
 	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo){
 		Todo dbTodo = this.service.createTodo(todo);
 		return ResponseEntity.ok(this.service.mapToDTO(dbTodo));
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<TodoDTO> updateTodo(@RequestBody Todo todo){
+		Todo updated = this.service.updateTodo(todo);
+		return ResponseEntity.ok(this.service.mapToDTO(updated));
 	}
 }
