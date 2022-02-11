@@ -10,6 +10,7 @@
 ### Screenshots showing your postman requests and the output from 
 the API.
 
+##POST Request: Adding a New User
 ![POST request: New Users](./screenshots/users-new.png)
 
 ### Screenshots of your database to prove that data is being persisted.
