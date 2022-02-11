@@ -24,9 +24,9 @@ public class TodoService {
 		this.mapper = mapper;
 	}
 	
-	public TodoDTO mapToDTO(Todo todo) {
-		return mapper.map(todo, TodoDTO.class);
-	}
+//	public TodoDTO mapToDTO(Todo todo) {
+//		return mapper.map(todo, TodoDTO.class);
+//	}
 	
 	/***
 	 * Private method for mapping List of Todos to DTOs
@@ -34,37 +34,36 @@ public class TodoService {
 	 * @return
 	 */
 	public List<TodoDTO> mapToDTOList(List<Todo> todos){
-		List<TodoDTO> dtos = new ArrayList<>();
-		todos.forEach(t -> {
-			dtos.add(mapToDTO(t));
-		});
-		return dtos;
+		return todos.stream().map(t -> mapper.map(t, TodoDTO.class)).toList();
 	}
 	
-	public List<Todo> getCurrentTodos(Long user_id){
+	public List<TodoDTO> getCurrentTodos(Long user_id){
 		List<Todo> todos = repo.getCurrentTodos(user_id);
-		return todos;
+		return mapToDTOList(todos);
 	}
 	
-	public Todo createTodo(Todo todo) {
-		return repo.save(todo);
+	public TodoDTO createTodo(Todo todo) {
+		Todo saved = repo.save(todo);
+		return mapper.map( saved, TodoDTO.class );
 	}
 	
-	public Todo updateTodo(Todo todo) {
+	public TodoDTO updateTodo(Todo todo) {
 		Optional<Todo> optional = repo.findById(todo.getTodo_id());
 		Todo existing = optional.get();
 		existing.setComplete(todo.isComplete());
 		existing.setDateAdded(todo.getDateAdded());
 		existing.setDateDue(todo.getDateDue());
 		existing.setDescription(todo.getDescription());
-		return repo.save(existing);
+		Todo saved = repo.save(existing);
+		return mapper.map(saved, TodoDTO.class);
 	}
 	
-	public Todo markComplete(Long id, boolean complete) {
+	public TodoDTO markComplete(Long id, boolean complete) {
 		Optional<Todo> optional = repo.findById(id);
 		Todo existing = optional.get();
 		existing.setComplete(complete);
-		return repo.save(existing);
+		Todo saved = repo.save(existing);
+		return mapper.map(saved, TodoDTO.class);
 	}
 	
 	public boolean deleteTodo(Long id) {
