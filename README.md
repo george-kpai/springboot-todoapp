@@ -15,4 +15,4 @@ the API.
 ### Screenshot of your test results, including coverage report.
 
 ### Link to Jira Board
-(My Jira Board)[https://bla-bla-bla]
+(My Jira Board)[https://georgekpai.atlassian.net/jira/software/projects/GDS/boards/1]
