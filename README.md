@@ -10,6 +10,8 @@
 ### Screenshots showing your postman requests and the output from 
 the API.
 
+![POST request: New Users](./screenshots/users-new.png)
+
 ### Screenshots of your database to prove that data is being persisted.
 
 ### Screenshot of your test results, including coverage report.
