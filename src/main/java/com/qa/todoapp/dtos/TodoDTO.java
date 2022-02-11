@@ -1,9 +1,10 @@
 package com.qa.todoapp.dtos;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class TodoDTO {
-		private long id;
+	private Long todo_id;
 	private String description;
 	private LocalDate dateAdded;
 	private LocalDate dateDue;
@@ -11,20 +12,29 @@ public class TodoDTO {
 	
 	public TodoDTO() {}
 	
-	public TodoDTO(long id, String description, LocalDate dateAdded, LocalDate dateDue, boolean complete) {
-		this.id = id;
+	public TodoDTO(Long id, String description, LocalDate dateAdded, LocalDate dateDue, boolean complete) {
+		this.todo_id = id;
 		this.description = description;
 		this.dateAdded = dateAdded;
 		this.dateDue = dateDue;
 		this.complete = complete;
 	}
 	
-	public long getId() {
-		return id;
+	public TodoDTO(String description, LocalDate dateAdded, LocalDate dateDue, boolean complete) {
+		this.description = description;
+		this.dateAdded = dateAdded;
+		this.dateDue = dateDue;
+		this.complete = complete;
+	}
+	
+	
+
+	public Long getTodo_id() {
+		return todo_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setTodo_id(Long todo_id) {
+		this.todo_id = todo_id;
 	}
 
 	public String getDescription() {
@@ -58,5 +68,26 @@ public class TodoDTO {
 	public void setComplete(boolean complete) {
 		this.complete = complete;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(complete, dateAdded, dateDue, description, todo_id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TodoDTO other = (TodoDTO) obj;
+		return complete == other.complete && Objects.equals(dateAdded, other.dateAdded)
+				&& Objects.equals(dateDue, other.dateDue) && Objects.equals(description, other.description)
+				&& Objects.equals(todo_id, other.todo_id);
+	}
+	
+	
 	
 }

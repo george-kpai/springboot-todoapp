@@ -26,8 +26,8 @@ public class UserService {
 	}
 	
 	public UserDTO updateUser(User user) {
-		Optional<User> optional = repo.findById(user.getId());
-		User existing = optional.get();
+		User existing = repo.findById(user.getUser_id()).get();
+		
 		existing.setEmail(user.getEmail());
 		existing.setName(user.getName());
 		existing.setPassword(user.getPassword());

@@ -28,31 +28,33 @@ public class TodoController {
 		this.service = service;
 	}
 	
+	@GetMapping
+	public boolean testing() {
+		return true;
+	}
+	
 	@GetMapping("/current")
 	public ResponseEntity<List<TodoDTO>> getCurrentTodos(@RequestParam(name = "id") Long id){
-		List<Todo> todos = this.service.getCurrentTodos(id);
-		List<TodoDTO> dtos = this.service.mapToDTOList(todos);
-		return ResponseEntity.ok(dtos);
+		return ResponseEntity.ok( service.getCurrentTodos(id) );
+//		return null;
 	}
 	
 	@PostMapping("/new")
-	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo){
-		Todo dbTodo = this.service.createTodo(todo);
-		return ResponseEntity.ok(this.service.mapToDTO(dbTodo));
+	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo, 
+			@RequestParam(name = "user_id") Long id){
+		return ResponseEntity.ok( service.createTodo(todo, id) );
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<TodoDTO> updateTodo(@RequestBody Todo todo){
-		Todo updated = this.service.updateTodo(todo);
-		return ResponseEntity.ok(this.service.mapToDTO(updated));
+		return ResponseEntity.ok( service.updateTodo(todo) );
 	}
 	
 	@PutMapping("/mark-complete")
 	public ResponseEntity<TodoDTO> markComplete(
 			@RequestParam(name = "id") Long id, 
 			@RequestParam(name = "complete") boolean complete){
-		Todo completed = this.service.markComplete(id, complete);
-		return ResponseEntity.ok(this.service.mapToDTO(completed));
+		return ResponseEntity.ok( service.markComplete(id, complete) );
 	}
 	
 	@DeleteMapping("/delete")
