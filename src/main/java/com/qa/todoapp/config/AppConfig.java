@@ -21,4 +21,5 @@ public class AppConfig {
 				.addModule(new JavaTimeModule())
 				.build();
 	}
+	
 }

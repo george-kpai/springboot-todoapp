@@ -1,7 +1,9 @@
 package com.qa.todoapp.services;
 
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,9 +26,6 @@ public class TodoService {
 		this.mapper = mapper;
 	}
 	
-//	public TodoDTO mapToDTO(Todo todo) {
-//		return mapper.map(todo, TodoDTO.class);
-//	}
 	
 	/***
 	 * Private method for mapping List of Todos to DTOs
@@ -42,9 +41,20 @@ public class TodoService {
 		return mapToDTOList(todos);
 	}
 	
-	public TodoDTO createTodo(Todo todo) {
+	private Date toDate(LocalDate d) {
+		Date date = new Date(d.getYear(), d.getMonthValue(), d.getDayOfMonth());
+		return date;
+	}
+	
+	public TodoDTO createTodo(Todo todo, Long user_id) {
 		Todo saved = repo.save(todo);
-		return mapper.map( saved, TodoDTO.class );
+		saved.setTodo_id(user_id);
+		Todo saved_id = repo.save(saved);
+//		Date date_added = toDate(todo.getDateAdded());
+//		Date date_due = toDate(todo.getDateDue());
+//		Todo saved = repo.saveTodo(todo.getDescription(), date_added, 
+//				date_due, todo.isComplete(), user_id);
+		return mapper.map( saved_id, TodoDTO.class );
 	}
 	
 	public TodoDTO updateTodo(Todo todo) {

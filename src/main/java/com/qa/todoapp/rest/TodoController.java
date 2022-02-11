@@ -28,14 +28,21 @@ public class TodoController {
 		this.service = service;
 	}
 	
+	@GetMapping
+	public boolean testing() {
+		return true;
+	}
+	
 	@GetMapping("/current")
 	public ResponseEntity<List<TodoDTO>> getCurrentTodos(@RequestParam(name = "id") Long id){
 		return ResponseEntity.ok( service.getCurrentTodos(id) );
+//		return null;
 	}
 	
 	@PostMapping("/new")
-	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo){
-		return ResponseEntity.ok( service.createTodo(todo) );
+	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo, 
+			@RequestParam(name = "user_id") Long id){
+		return ResponseEntity.ok( service.createTodo(todo, id) );
 	}
 	
 	@PutMapping("/update")

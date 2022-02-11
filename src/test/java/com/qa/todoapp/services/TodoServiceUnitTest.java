@@ -60,6 +60,6 @@ public class TodoServiceUnitTest {
 		Mockito	.when(this.repo.getCurrentTodos(1L))
 				.thenReturn(todos);
 		Assertions	.assertThat(this.service.getCurrentTodos(1L))
-					.isEqualTo(todos);
+					.isEqualTo(todoDTOs);
 	}
 }
