@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +21,8 @@ public class Todo {
 	private LocalDate dateAdded;
 	private LocalDate dateDue;
 	private boolean complete;
-	@ManyToOne()
-	@JoinColumn(name = "id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	public Todo() {}
@@ -33,8 +34,14 @@ public class Todo {
 		this.dateAdded = dateAdded;
 		this.dateDue = dateDue;
 		this.complete = complete;
-		//TODO: Do I need to add user as a constructor parameter?
-//		this.user = user;
+	}
+	
+	public Todo(String description, LocalDate dateAdded, 
+			LocalDate dateDue, boolean complete) {
+		this.description = description;
+		this.dateAdded = dateAdded;
+		this.dateDue = dateDue;
+		this.complete = complete;
 	}
 
 	public long getTodo_id() {
@@ -77,13 +84,5 @@ public class Todo {
 		this.complete = complete;
 	}
 	
-	//TODO: Do I need to specify getters and setters for Joined Columns?
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 }
