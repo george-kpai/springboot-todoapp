@@ -13,6 +13,12 @@ the API.
 ##POST Request: Adding a New User
 ![POST request: New Users](./screenshots/users-new.png)
 
+##DELETE Request: Deleting a User
+![DELETE request: Delete Users](./screenshots/users-delete.png)
+
+##PUT Request: Adding a New User
+![PUT request: Update Exting Users](./screenshots/users-update.png)
+
 ### Screenshots of your database to prove that data is being persisted.
 
 ### Screenshot of your test results, including coverage report.
