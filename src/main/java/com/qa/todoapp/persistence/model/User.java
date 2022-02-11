@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long user_id;
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
@@ -27,18 +27,26 @@ public class User {
 	
 	public User() {}
 	
+	public User(Long user_id, String email, String name, String password) {
+		this.user_id = user_id;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+	
 	public User(String email, String name, String password) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
 	}
 
-	public long getId() {
-		return id;
+	
+	public Long getUser_id() {
+		return user_id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getEmail() {
