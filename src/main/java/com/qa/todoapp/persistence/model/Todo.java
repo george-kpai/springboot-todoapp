@@ -1,6 +1,7 @@
 package com.qa.todoapp.persistence.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Todo {
@@ -19,53 +19,38 @@ public class Todo {
 	private Long todo_id;
 	@Column(nullable = false, length = 55)
 	private String description;
-//	@Column(name = "date_added", columnDefinition = "DATE")
+	@Column(name = "date_added", columnDefinition = "DATE")
 	private LocalDate dateAdded;
-//	@Column(name = "date_due", columnDefinition = "DATE")
+	@Column(name = "date_due", columnDefinition = "DATE")
 	private LocalDate dateDue;
 	private boolean complete;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-	@Transient
-	private Long user_id;
 	
 	public Todo() {}
 	
-	public Todo(Long id, String description, LocalDate dateAdded, 
-			LocalDate dateDue, boolean complete) {
+	public Todo(Long id) {
 		this.todo_id = id;
-		this.description = description;
-		this.dateAdded = dateAdded;
-		this.dateDue = dateDue;
-		this.complete = complete;
 	}
-	
-	public Todo(Long id, String description, LocalDate dateAdded, 
-			LocalDate dateDue, boolean complete, Long user_id) {
-		this.todo_id = id;
+
+	public Todo(Long todo_id, String description, LocalDate dateAdded, LocalDate dateDue, boolean complete, User user) {
+		super();
+		this.todo_id = todo_id;
 		this.description = description;
 		this.dateAdded = dateAdded;
 		this.dateDue = dateDue;
 		this.complete = complete;
-		this.user_id = user_id;
+		this.user = user;
 	}
-	
-	public Todo(String description, LocalDate dateAdded, 
-			LocalDate dateDue, boolean complete) {
+		
+	public Todo(String description, LocalDate dateAdded, LocalDate dateDue, boolean complete, User user) {
+		super();
 		this.description = description;
 		this.dateAdded = dateAdded;
 		this.dateDue = dateDue;
 		this.complete = complete;
-	}
-	
-	public Todo(String description, LocalDate dateAdded, 
-			LocalDate dateDue, boolean complete, Long user_id) {
-		this.description = description;
-		this.dateAdded = dateAdded;
-		this.dateDue = dateDue;
-		this.complete = complete;
-		this.user_id = user_id;
+		this.user = user;
 	}
 
 	public Long getTodo_id() {
@@ -107,8 +92,34 @@ public class Todo {
 	public void setComplete(boolean complete) {
 		this.complete = complete;
 	}
-	
-	
-	
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(complete, dateAdded, dateDue, description, todo_id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Todo other = (Todo) obj;
+		return complete == other.complete && Objects.equals(dateAdded, other.dateAdded)
+				&& Objects.equals(dateDue, other.dateDue) && Objects.equals(description, other.description)
+				&& Objects.equals(todo_id, other.todo_id);
+	}
+
+	
+	
 }

@@ -1,5 +1,6 @@
 package com.qa.todoapp.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,11 @@ public class UserService {
 	public UserService(UserRepo repo, ModelMapper mapper) {
 		this.repo = repo;
 		this.mapper = mapper;
+	}
+	
+	public List<UserDTO> allUsers() {
+		return repo.findAll().stream()
+				.map(t -> mapper.map(t, UserDTO.class)).toList();
 	}
 	
 	public UserDTO createUser(User user) {
