@@ -43,8 +43,15 @@ public class Todo {
 		this.complete = complete;
 		this.user = user;
 	}
-
-
+		
+	public Todo(String description, LocalDate dateAdded, LocalDate dateDue, boolean complete, User user) {
+		super();
+		this.description = description;
+		this.dateAdded = dateAdded;
+		this.dateDue = dateDue;
+		this.complete = complete;
+		this.user = user;
+	}
 
 	public Long getTodo_id() {
 		return todo_id;
