@@ -29,8 +29,8 @@ public class TodoController {
 	}
 	
 	@GetMapping
-	public boolean testing() {
-		return true;
+	public ResponseEntity<List<TodoDTO>> allTodos() {
+		return ResponseEntity.ok( service.allTodos() );
 	}
 	
 	@GetMapping("/current")
@@ -40,9 +40,8 @@ public class TodoController {
 	}
 	
 	@PostMapping("/new")
-	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo, 
-			@RequestParam(name = "user_id") Long id){
-		return ResponseEntity.ok( service.createTodo(todo, id) );
+	public ResponseEntity<TodoDTO> createTodo(@RequestBody Todo todo){
+		return ResponseEntity.ok( service.createTodo(todo) );
 	}
 	
 	@PutMapping("/update")
