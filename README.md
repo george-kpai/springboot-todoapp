@@ -1,7 +1,7 @@
 ## Why are we doing this?
 ### This project helps solidy our knowledge of Java Spring Boot for Backend Applications.
 ### This Application is a Simple TODO Application. However 2 Database Tables were used with a Foreign Key Relationship.
-### This is a bit more advanced than a scenario where only database table is used to persist the Database Entities.
+### This is a bit more advanced than a scenario where only one database table is used to persist the Database Entities.
 ### This skills demonstarted in this project are applicable & transferable to larger projects with multiple tables & complex joins. 
 
 
