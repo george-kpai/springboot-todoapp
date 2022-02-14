@@ -1,5 +1,7 @@
 package com.qa.todoapp.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +26,11 @@ public class UserController {
 	@Autowired
 	public UserController(UserService service) {
 		this.service = service;
+	}
+	
+	@GetMapping //Default 
+	public ResponseEntity<List<UserDTO>> allUsers(){
+		return ResponseEntity.ok( service.allUsers() );
 	}
 	
 	@PostMapping("/new")

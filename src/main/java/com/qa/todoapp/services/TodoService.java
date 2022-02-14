@@ -36,25 +36,18 @@ public class TodoService {
 		return todos.stream().map(t -> mapper.map(t, TodoDTO.class)).toList();
 	}
 	
+	public List<TodoDTO> allTodos(){
+		return mapToDTOList( repo.findAll() );
+	}
+	
 	public List<TodoDTO> getCurrentTodos(Long user_id){
 		List<Todo> todos = repo.getCurrentTodos(user_id);
 		return mapToDTOList(todos);
 	}
 	
-	private Date toDate(LocalDate d) {
-		Date date = new Date(d.getYear(), d.getMonthValue(), d.getDayOfMonth());
-		return date;
-	}
-	
-	public TodoDTO createTodo(Todo todo, Long user_id) {
+	public TodoDTO createTodo(Todo todo) {
 		Todo saved = repo.save(todo);
-		saved.setTodo_id(user_id);
-		Todo saved_id = repo.save(saved);
-//		Date date_added = toDate(todo.getDateAdded());
-//		Date date_due = toDate(todo.getDateDue());
-//		Todo saved = repo.saveTodo(todo.getDescription(), date_added, 
-//				date_due, todo.isComplete(), user_id);
-		return mapper.map( saved_id, TodoDTO.class );
+		return mapper.map( saved, TodoDTO.class );
 	}
 	
 	public TodoDTO updateTodo(Todo todo) {
