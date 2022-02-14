@@ -1,5 +1,7 @@
 package com.qa.todoapp.services;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -20,9 +22,23 @@ public class UserServiceUnitTest {
 	private UserService service;
 	@MockBean
 	private UserRepo repo;
-//	@Autowired
-//	private ModelMapper mapper;
 	
+	@Test
+	public void testAllUsers() {
+		User user1 = new User("john.doe@email.com", "John", "abc");
+		User user2 = new User("jane.doe@email.com", "Jane", "123");
+		User user3 = new User("doe@email.com", "Doe", "pass");
+		UserDTO userDto1 = new UserDTO("john.doe@email.com", "John");	//, "abc");
+		UserDTO userDto2 = new UserDTO("jane.doe@email.com", "Jane");	//, "123");
+		UserDTO userDto3 = new UserDTO("doe@email.com", "Doe");	//, "pass");
+		List<User> users = Arrays.asList( user1, user2, user3 );
+		List<UserDTO> userDTOs = Arrays.asList( userDto1, userDto2, userDto3 );
+		
+		Mockito	.when( repo.findAll() )
+				.thenReturn(users);
+		Assertions.assertThat( service.allUsers() )
+				.containsExactlyElementsOf(userDTOs);
+	}
 	
 	@Test
 	public void testCreateUser() {
