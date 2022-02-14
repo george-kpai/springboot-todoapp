@@ -1,7 +1,7 @@
 ## Why are we doing this?
 ### This project helps solidy our knowledge of Java Spring Boot for Backend Applications.
-### This Application is a Simple TODO Application however 2 Database Tables were used with a Foreign Key Relationship.
-### This is a bit more advanced than a scenario where only database table was used to persist the Database Entities.
+### This Application is a Simple TODO Application. However 2 Database Tables were used with a Foreign Key Relationship.
+### This is a bit more advanced than a scenario where only database table is used to persist the Database Entities.
 ### This skills demonstarted in this project are applicable & transferable to larger projects with multiple tables & complex joins. 
 
 
@@ -10,7 +10,6 @@
 ### This was not the case however. The integration testing of Spring Boot Applications is very brittle & difficult to get right.
 ### It also seems that differnt IDEs are more suited to diffent aspects of the development & build of a Spring Boot Application.
 
-## What went well? / What didn't go as planned?
 # What went well
 ### The understanding of the concepts of Java as an Object Oriented Program was smooth. I assess as "Well" received.
 
@@ -33,8 +32,10 @@
 ![PUT request: Update Exting Users](./screenshots/users-update.png)
 
 ## Screenshots of your database to prove that data is being persisted.
+![Database Screenshot: Evidence of persited data](./screenshots/h2-persited-data.PNG)
 
 ## Screenshot of your test results, including coverage report.
+![Coverage Report Screenshot: Evidence of](./screenshots/coverage-percent-86p.PNG)
 
 ### Link to Jira Board
 (My Jira Board)[https://georgekpai.atlassian.net/jira/software/projects/GDS/boards/1]
