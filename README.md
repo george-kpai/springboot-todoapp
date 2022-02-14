@@ -32,10 +32,10 @@
 ![PUT request: Update Exting Users](./screenshots/users-update.png)
 
 ## Screenshots of your database to prove that data is being persisted.
-![Database Screenshot: Evidence of persited data](./screenshots/h2-persited-data.PNG)
+![Database Screenshot: Evidence of persited data](./Screenshots/h2-persited-data.PNG)
 
 ## Screenshot of your test results, including coverage report.
-![Coverage Report Screenshot: Evidence of](./screenshots/coverage-percent-86p.PNG)
+![Coverage Report Screenshot: Evidence of](./Screenshots/coverage-percent-86p.PNG)
 
 ### Link to Jira Board
 (My Jira Board)[https://georgekpai.atlassian.net/jira/software/projects/GDS/boards/1]
